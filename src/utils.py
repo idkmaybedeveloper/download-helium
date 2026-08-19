@@ -53,6 +53,14 @@ ALIASES = {
     "linux-aarch64": LINUX_ARM64,
 }
 
+#NOTE: imputnet/helium itself carries no releases, every build (and its tag) lives
+#in the per os repo, so a link built from the version alone would 404 there
+RELEASE_REPOS = {
+    "mac": "https://github.com/imputnet/helium-macos",
+    "win": "https://github.com/imputnet/helium-windows",
+    "linux": "https://github.com/imputnet/helium-linux",
+}
+
 LINUX_FORMATS = [("appimage", "AppImage"), ("deb", ".deb"), ("tarball", "tar.xz")]
 
 
@@ -62,6 +70,10 @@ def get_platform(name):
         if platform.name == wanted:
             return platform
     return ALIASES.get(wanted)
+
+
+def get_repo_url(platform):
+    return RELEASE_REPOS[platform.os_name]
 
 
 def get_linux_format(name):

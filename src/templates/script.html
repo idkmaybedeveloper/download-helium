@@ -1,5 +1,6 @@
     <script>
         var REV_URL = "$rev_url";
+        var RELEASES_URL = "$releases_url";
 
         var download = document.getElementById('download');
         download.addEventListener('click', function() {
@@ -49,7 +50,7 @@
                 response.json().then( rev => {
                     var link = msg.querySelector('a');
                     link.textContent = rev.content;
-                    link.href = "https://github.com/imputnet/helium/releases/tag/" + rev.content;
+                    link.href = RELEASES_URL + "/tag/" + rev.content;
                     if (rev['last-modified']) {
                         msg.querySelector('span').textContent = '| Updated ' + timeSince(rev['last-modified']);
                     }
